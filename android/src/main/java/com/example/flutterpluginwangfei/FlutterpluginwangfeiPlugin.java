@@ -12,6 +12,8 @@ import com.example.flutterpluginwangfei.plugin.MyActivityLifecycle;
 import com.example.flutterpluginwangfei.view.filepicker.models.sort.SortingTypes;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+
 import java.util.ArrayList;
 import droidninja.filepicker.FilePickerBuilder;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -99,11 +101,11 @@ public class FlutterpluginwangfeiPlugin implements FlutterPlugin, MethodCallHand
             boolean msynOrAsy = call.argument("msynOrAsy");
             boolean mCompress = call.argument("mCompress");
             boolean mEnableCrop = call.argument("mEnableCrop");
-            PictureSelector.create(activity)
+         /*   PictureSelector.create(activity)
                     .openGallery(mPictureMimeType)// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                     .theme(R.style.picture_default_style)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
-                    .maxSelectNum(mMxSelectNum)//TODO 王飞 最大图片选择数量需要减去已近又得哦。
-                    .minSelectNum(mInSelectNum)// 最小选择数量
+                    .maxSelectNum(mMxSelectNum)//
+                    .minSelectNum(mInSelectNum)//最小选择数量
                     .imageSpanCount(sPanCount)// 每行显示个数
                     .selectionMode(mSelectionMode)// 多选 or 单选PictureConfig.MULTIPLE  多选 PictureConfig.SINGLE)//  单选
                     .previewImage(isPreviewImage)// 是否可预览图片
@@ -113,8 +115,27 @@ public class FlutterpluginwangfeiPlugin implements FlutterPlugin, MethodCallHand
                     .isZoomAnim(mIsZoomAnim)// 图片列表点击 缩放效果 默认true
                     .enableCrop(mEnableCrop)// 是否裁剪
                     .compress(mCompress)// 是否压缩
-                    .synOrAsy(true)//同步true或异步false 压缩 默认同步
+                    .synOrAsy(false)//同步true或异步false 压缩 默认同步
                     .glideOverride(mWidth, mHeight)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                    .openClickSound(mOpenSound)// 是否开启点击声音
+                    .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code*/
+
+            PictureSelector.create(activity)
+                    .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                    .theme(R.style.picture_default_style)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
+                    .maxSelectNum(mMxSelectNum)//TODO 王飞 最大图片选择数量需要减去已近又得哦。
+                    .minSelectNum(mInSelectNum)// 最小选择数量
+                    .imageSpanCount(sPanCount)// 每行显示个数
+                    .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选PictureConfig.MULTIPLE  多选 PictureConfig.SINGLE)//  单选
+                    .previewImage(isPreviewImage)// 是否可预览图片
+                    .previewVideo(isPreviewVideo)// 是否可预览视频
+                    .enablePreviewAudio(mEnablePreviewAudio) // 是否可播放音频
+                    .isCamera(mIsCamera)// 是否显示拍照按钮
+                    .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
+                    .enableCrop(false)// 是否裁剪
+                    .compress(true)// 是否压缩
+                    .synOrAsy(true)//同步true或异步false 压缩 默认同步
+                    .glideOverride(100, 100)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
                     .openClickSound(mOpenSound)// 是否开启点击声音
                     .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
             delegate.setResult(result);
