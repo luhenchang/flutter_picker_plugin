@@ -1,20 +1,15 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutterpluginwangfei/plugin.dart';
-
 import 'config/PictureMimeType.dart';
 import 'config/SelectionMode.dart';
 import 'json/modle/image_bean_entity.dart';
-
+///图片选择
 class PictureSelector {
-  // 工厂模式
   factory PictureSelector() => _getInstance();
 
   static PictureSelector get instance => _getInstance();
   static PictureSelector _instance;
 
-  //全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
   int _mPictureMimeType = 0;
   int _mMxSelectNum = 5;
   int _mInSelectNum = 1;
@@ -33,7 +28,7 @@ class PictureSelector {
   bool _mEnableCrop = true;
 
   PictureSelector._internal() {
-    // 初始化
+    /// 初始化
   }
 
   static PictureSelector _getInstance() {
@@ -42,7 +37,7 @@ class PictureSelector {
     }
     return _instance;
   }
-
+  ///支持的文件类型可以不可以拍照和录制视频等
   PictureSelector openGallery(
       {PictureMimeType pictureMimeType = PictureMimeType.all}) {
     if (pictureMimeType == PictureMimeType.image) {
@@ -55,25 +50,25 @@ class PictureSelector {
     return _instance;
   }
 
-  //最多选择几个
+  ///最多选择几个
   PictureSelector maxSelectNum({int maxSelectNum = 5}) {
     _mMxSelectNum = maxSelectNum;
     return _instance;
   }
 
-  //至少选择几个才能点击完成
+  ///至少选择几个才能点击完成
   PictureSelector minSelectNum({int minSelectNum = 1}) {
     _mInSelectNum = minSelectNum;
     return _instance;
   }
 
-  //一行几张图片
+  ///一行几张图片
   PictureSelector imageSpanCount({int imageSpancount = 4}) {
     _sPanCount = imageSpancount;
     return _instance;
   }
 
-  //多选或者单选： 多选 or 单选PictureConfig.MULTIPLE  多选 PictureConfig.SINGLE)//  单选
+  ///多选或者单选： 多选 or 单选PictureConfig.MULTIPLE  多选 PictureConfig.SINGLE)//  单选
   PictureSelector selectionMode(
       {PictureConfig pictureConfig = PictureConfig.MULTIPLE}) {
     if (PictureConfig != null && pictureConfig == PictureConfig.MULTIPLE) {
@@ -84,25 +79,25 @@ class PictureSelector {
     return _instance;
   }
 
-  //是否可预览图片
+  ///是否可预览图片
   PictureSelector previewImage({bool previewImage = true}) {
     _isPreviewImage = previewImage;
     return _instance;
   }
 
-  //是否可预览视频
+  ///是否可预览视频
   PictureSelector previewVideo({bool previewVideo = true}) {
     _isPreviewVideo = previewVideo;
     return _instance;
   }
 
-  //是否可播放音频
+  ///是否可播放音频
   PictureSelector enablePreviewAudio({bool enablePreviewAudio = true}) {
     _mEnablePreviewAudio = enablePreviewAudio;
     return _instance;
   }
 
-  //是否显示拍照按钮
+  ///是否显示拍照按钮
   PictureSelector isCamera({bool iscamera = true}) {
     _mIsCamera = iscamera;
     return _instance;
@@ -114,36 +109,35 @@ class PictureSelector {
     return _instance;
   }
 
-  //是否裁剪
+  ///是否裁剪
   PictureSelector enableCrop({bool enablecrop = false}) {
     _mEnableCrop = enablecrop;
     return _instance;
   }
 
-  // 是否压缩
+  /// 是否压缩
   PictureSelector compress({bool compress = true}) {
     _mCompress = compress;
     return _instance;
   }
-
+  ///
   PictureSelector synOrAsy({bool synOrAsy = true}) {
     _msynOrAsy = synOrAsy;
     return _instance;
   }
 
-  //加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+  ///加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
   PictureSelector glideOverride({int width = 100, int height = 100}) {
     _mWidth = width;
     _mHeight = height;
     return _instance;
   }
 
-  // 是否开启点击声音
+  ///是否开启点击声音
   PictureSelector openClickSound({open = false}) {
     _mOpenSound = open;
     return _instance;
   }
-
   Future<ImageBeanEntity> getPhotoAlbumToNative() async {
     Map<String, dynamic> map = {
       "mPictureMimeType": _mPictureMimeType,
@@ -164,7 +158,6 @@ class PictureSelector {
       "mEnableCrop": _mEnableCrop
     };
     String resultJson = await plugin.jumpPlugin.invokeMethod('openPhotoAlbum', map);
-    print("result"+resultJson);
     Map<String, dynamic> mapJson = json.decode(resultJson);
     ImageBeanEntity imageBeanEntity = ImageBeanEntity().fromJson(mapJson);
     return imageBeanEntity;
