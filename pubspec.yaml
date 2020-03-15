@@ -1,6 +1,6 @@
-name: flutter_picker_plugin
+name: flutterpluginwangfei
 description: A new Flutter plugin for us could selected image or vedio or audio...
-version: 0.0.2
+version: 0.0.3
 author: fei wang <luhenchang1314@gmail.com>
 homepage: https://github.com/luhenchang/luhenchang_plugin
 environment:

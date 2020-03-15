@@ -4,26 +4,19 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.pm.ActivityInfo;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
-
 import com.example.flutterpluginwangfei.config.BaseConfig;
 import com.example.flutterpluginwangfei.plugin.FileAndImagePickerDelegate;
 import com.example.flutterpluginwangfei.plugin.MyActivityLifecycle;
 import com.example.flutterpluginwangfei.view.filepicker.models.sort.SortingTypes;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
-import com.luck.picture.lib.config.PictureMimeType;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import droidninja.filepicker.FilePickerBuilder;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
-import io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -155,8 +148,6 @@ public class FlutterpluginwangfeiPlugin implements FlutterPlugin, MethodCallHand
                 Log.e("wangfei==", "002");
                 activityBinding.addActivityResultListener(delegate);
                 activityBinding.addRequestPermissionsResultListener(delegate);
-                lifecycle = FlutterLifecycleAdapter.getActivityLifecycle(activityBinding);
-                lifecycle.addObserver(observer);
             }
         }
 
