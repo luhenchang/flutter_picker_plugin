@@ -3,6 +3,7 @@ import 'package:flutterpluginwangfei/plugin.dart';
 import 'config/PictureMimeType.dart';
 import 'config/SelectionMode.dart';
 import 'json/modle/image_bean_entity.dart';
+
 ///图片选择
 class PictureSelector {
   factory PictureSelector() => _getInstance();
@@ -19,7 +20,7 @@ class PictureSelector {
   bool _isPreviewVideo = true;
   bool _mEnablePreviewAudio = true;
   bool _mIsCamera = true;
-  bool _mIsZoomAnim=true;
+  bool _mIsZoomAnim = true;
   var _mOpenSound = false;
   int _mWidth = 100;
   int _mHeight = 100;
@@ -37,6 +38,7 @@ class PictureSelector {
     }
     return _instance;
   }
+
   ///支持的文件类型可以不可以拍照和录制视频等
   PictureSelector openGallery(
       {PictureMimeType pictureMimeType = PictureMimeType.all}) {
@@ -120,6 +122,7 @@ class PictureSelector {
     _mCompress = compress;
     return _instance;
   }
+
   ///
   PictureSelector synOrAsy({bool synOrAsy = true}) {
     _msynOrAsy = synOrAsy;
@@ -138,6 +141,7 @@ class PictureSelector {
     _mOpenSound = open;
     return _instance;
   }
+
   Future<ImageBeanEntity> getPhotoAlbumToNative() async {
     Map<String, dynamic> map = {
       "mPictureMimeType": _mPictureMimeType,
@@ -152,12 +156,13 @@ class PictureSelector {
       "mIsZoomAnim": _mIsZoomAnim,
       "mOpenSound": _mOpenSound,
       "mWidth": _mWidth,
-      "mHeight":_mHeight,
+      "mHeight": _mHeight,
       "msynOrAsy": _msynOrAsy,
       "mCompress": _mCompress,
       "mEnableCrop": _mEnableCrop
     };
-    String resultJson = await plugin.jumpPlugin.invokeMethod('openPhotoAlbum', map);
+    String resultJson =
+        await plugin.jumpPlugin.invokeMethod('openPhotoAlbum', map);
     Map<String, dynamic> mapJson = json.decode(resultJson);
     ImageBeanEntity imageBeanEntity = ImageBeanEntity().fromJson(mapJson);
     return imageBeanEntity;

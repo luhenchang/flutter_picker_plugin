@@ -9,40 +9,54 @@ import 'package:flutterpluginwangfei/json/modle/image_bean_entity.dart';
 import '../modle/image_bean_entity_helper.dart';
 
 class JsonConvert<T> {
-	T fromJson(Map<String, dynamic> json) {
-		return _getFromJson<T>(runtimeType, this, json);
-	}
+  T fromJson(Map<String, dynamic> json) {
+    return _getFromJson<T>(runtimeType, this, json);
+  }
 
   Map<String, dynamic> toJson() {
-		return _getToJson<T>(runtimeType, this);
+    return _getToJson<T>(runtimeType, this);
   }
 
   static _getFromJson<T>(Type type, data, json) {
-    switch (type) {			case ImageBeanEntity:
-			return imageBeanEntityFromJson(data as ImageBeanEntity, json) as T;			case ImageBeanImageList:
-			return imageBeanImageListFromJson(data as ImageBeanImageList, json) as T;    }
+    switch (type) {
+      case ImageBeanEntity:
+        return imageBeanEntityFromJson(data as ImageBeanEntity, json) as T;
+      case ImageBeanImageList:
+        return imageBeanImageListFromJson(data as ImageBeanImageList, json)
+            as T;
+    }
     return data as T;
   }
 
   static _getToJson<T>(Type type, data) {
-		switch (type) {			case ImageBeanEntity:
-			return imageBeanEntityToJson(data as ImageBeanEntity);			case ImageBeanImageList:
-			return imageBeanImageListToJson(data as ImageBeanImageList);    }
+    switch (type) {
+      case ImageBeanEntity:
+        return imageBeanEntityToJson(data as ImageBeanEntity);
+      case ImageBeanImageList:
+        return imageBeanImageListToJson(data as ImageBeanImageList);
+    }
     return data as T;
   }
+
   //Go back to a single instance by type
   static _fromJsonSingle(String type, json) {
-    switch (type) {			case 'ImageBeanEntity':
-			return ImageBeanEntity().fromJson(json);			case 'ImageBeanImageList':
-			return ImageBeanImageList().fromJson(json);    }
+    switch (type) {
+      case 'ImageBeanEntity':
+        return ImageBeanEntity().fromJson(json);
+      case 'ImageBeanImageList':
+        return ImageBeanImageList().fromJson(json);
+    }
     return null;
   }
 
   //empty list is returned by type
   static _getListFromType(String type) {
-    switch (type) {			case 'ImageBeanEntity':
-			return List<ImageBeanEntity>();			case 'ImageBeanImageList':
-			return List<ImageBeanImageList>();    }
+    switch (type) {
+      case 'ImageBeanEntity':
+        return List<ImageBeanEntity>();
+      case 'ImageBeanImageList':
+        return List<ImageBeanImageList>();
+    }
     return null;
   }
 

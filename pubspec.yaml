@@ -1,6 +1,6 @@
 name: flutterpluginwangfei
 description: A new Flutter plugin for us could selected image or vedio or audio .
-version: 0.04.0
+version: 0.05.0
 author: fei wang <luhenchang1314@gmail.com>
 homepage: https://github.com/luhenchang/luhenchang_plugin
 environment:
