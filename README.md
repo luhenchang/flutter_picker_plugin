@@ -12,7 +12,6 @@ A Select picture and file plugins.
   #### 3. Ios side
 
   info.plist add
-
   <key>NSPhotoLibraryAddUsageDescription</key>
     	<string>Do you allow this app to use albums?</string>
     	<key>NSPhotoLibraryUsageDescription</key>
