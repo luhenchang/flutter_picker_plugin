@@ -101,25 +101,6 @@ public class FlutterpluginwangfeiPlugin implements FlutterPlugin, MethodCallHand
             boolean msynOrAsy = call.argument("msynOrAsy");
             boolean mCompress = call.argument("mCompress");
             boolean mEnableCrop = call.argument("mEnableCrop");
-         /*   PictureSelector.create(activity)
-                    .openGallery(mPictureMimeType)// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
-                    .theme(R.style.picture_default_style)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
-                    .maxSelectNum(mMxSelectNum)//
-                    .minSelectNum(mInSelectNum)//最小选择数量
-                    .imageSpanCount(sPanCount)// 每行显示个数
-                    .selectionMode(mSelectionMode)// 多选 or 单选PictureConfig.MULTIPLE  多选 PictureConfig.SINGLE)//  单选
-                    .previewImage(isPreviewImage)// 是否可预览图片
-                    .previewVideo(isPreviewVideo)// 是否可预览视频
-                    .enablePreviewAudio(mEnablePreviewAudio) // 是否可播放音频
-                    .isCamera(mIsCamera)// 是否显示拍照按钮
-                    .isZoomAnim(mIsZoomAnim)// 图片列表点击 缩放效果 默认true
-                    .enableCrop(mEnableCrop)// 是否裁剪
-                    .compress(mCompress)// 是否压缩
-                    .synOrAsy(false)//同步true或异步false 压缩 默认同步
-                    .glideOverride(mWidth, mHeight)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
-                    .openClickSound(mOpenSound)// 是否开启点击声音
-                    .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code*/
-
             PictureSelector.create(activity)
                     .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                     .theme(R.style.picture_default_style)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style

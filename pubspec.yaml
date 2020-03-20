@@ -1,6 +1,6 @@
 name: flutterpluginwangfei
 description: A new Flutter plugin for us could selected image or vedio or audio .
-version: 0.05.0
+version: 0.08.0
 author: fei wang <luhenchang1314@gmail.com>
 homepage: https://github.com/luhenchang/luhenchang_plugin
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  asset_pickers: ^0.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

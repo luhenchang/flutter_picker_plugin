@@ -1,14 +1,29 @@
 # flutterpluginwangfei
 
-A new Flutter plugin.
-
+A Select picture and file plugins.
+## Thanks [asset_pickers](https://dart-pub.mirrors.sjtug.sjtu.edu.cn/packages/asset_pickers)
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## How to Use
+  #### 1. Depend on it
+  flutterpluginwangfei: ^0.8.0
+  #### 2. Android side
+  No configuration required on the android side
+  #### 3. Ios side
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+  info.plist add
+
+  <key>NSPhotoLibraryAddUsageDescription</key>
+    	<string>Do you allow this app to use albums?</string>
+    	<key>NSPhotoLibraryUsageDescription</key>
+    	<string>This app needs access to your photo album so you can use services like uploading pictures</string>
+    	<key>NSCameraUsageDescription</key>
+    	<string>This app requires your consent to use the camera features</string>
+    	<key>NSAppTransportSecurity</key>
+    	<dict>
+    		<key>NSAllowsArbitraryLoads</key>
+    		<true/>
+    	</dict>
+
+  ####4 Run as follows
+

@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:asset_pickers/asset_pickers.dart';
 import 'package:flutterpluginwangfei/plugin.dart';
 import 'config/PictureMimeType.dart';
 import 'config/SelectionMode.dart';
@@ -27,7 +29,7 @@ class PictureSelector {
   bool _msynOrAsy = true;
   bool _mCompress = true;
   bool _mEnableCrop = true;
-
+  AssetsType assetsType=AssetsType.imageAndVideo;
   PictureSelector._internal() {
     /// 初始化
   }
@@ -40,13 +42,15 @@ class PictureSelector {
   }
 
   ///支持的文件类型可以不可以拍照和录制视频等
-  PictureSelector openGallery(
-      {PictureMimeType pictureMimeType = PictureMimeType.all}) {
+  PictureSelector openGallery({PictureMimeType pictureMimeType = PictureMimeType.all}) {
     if (pictureMimeType == PictureMimeType.image) {
+      assetsType=AssetsType.imageOnly;
       _mPictureMimeType = 1;
     } else if (pictureMimeType == PictureMimeType.video) {
+      assetsType=AssetsType.videoOnly;
       _mPictureMimeType = 2;
     } else if (pictureMimeType == PictureMimeType.audio) {
+      assetsType=AssetsType.imageOrVideo;
       _mPictureMimeType = 3;
     }
     return _instance;
@@ -143,28 +147,47 @@ class PictureSelector {
   }
 
   Future<ImageBeanEntity> getPhotoAlbumToNative() async {
-    Map<String, dynamic> map = {
-      "mPictureMimeType": _mPictureMimeType,
-      "mMxSelectNum": _mMxSelectNum,
-      "mInSelectNum": _mInSelectNum,
-      "sPanCount": _sPanCount,
-      "mSelectionMode": _mSelectionMode,
-      "isPreviewImage": _isPreviewImage,
-      "isPreviewVideo": _isPreviewVideo,
-      "mEnablePreviewAudio": _mEnablePreviewAudio,
-      "mIsCamera": _mIsCamera,
-      "mIsZoomAnim": _mIsZoomAnim,
-      "mOpenSound": _mOpenSound,
-      "mWidth": _mWidth,
-      "mHeight": _mHeight,
-      "msynOrAsy": _msynOrAsy,
-      "mCompress": _mCompress,
-      "mEnableCrop": _mEnableCrop
-    };
-    String resultJson =
-        await plugin.jumpPlugin.invokeMethod('openPhotoAlbum', map);
-    Map<String, dynamic> mapJson = json.decode(resultJson);
-    ImageBeanEntity imageBeanEntity = ImageBeanEntity().fromJson(mapJson);
-    return imageBeanEntity;
+    if (Platform.isAndroid) {
+      Map<String, dynamic> map = {
+        "mPictureMimeType": _mPictureMimeType,
+        "mMxSelectNum": _mMxSelectNum,
+        "mInSelectNum": _mInSelectNum,
+        "sPanCount": _sPanCount,
+        "mSelectionMode": _mSelectionMode,
+        "isPreviewImage": _isPreviewImage,
+        "isPreviewVideo": _isPreviewVideo,
+        "mEnablePreviewAudio": _mEnablePreviewAudio,
+        "mIsCamera": _mIsCamera,
+        "mIsZoomAnim": _mIsZoomAnim,
+        "mOpenSound": _mOpenSound,
+        "mWidth": _mWidth,
+        "mHeight": _mHeight,
+        "msynOrAsy": _msynOrAsy,
+        "mCompress": _mCompress,
+        "mEnableCrop": _mEnableCrop
+      };
+      String resultJson =
+          await plugin.jumpPlugin.invokeMethod('openPhotoAlbum', map);
+      Map<String, dynamic> mapJson = json.decode(resultJson);
+      ImageBeanEntity imageBeanEntity = ImageBeanEntity().fromJson(mapJson);
+      return imageBeanEntity;
+    } else {
+      List list = await AssetPickers.getAssets(assetType:assetsType);
+      ImageBeanEntity imageBeanEntity = ImageBeanEntity();
+      List<ImageBeanImageList> imageList = new List();
+      for (int index = 0; index < list.length; index++) {
+        String filePath = list[index]['path'];
+        String type = list[index]['type'];
+        List<String> allName = filePath.split("\/");
+        String fileName = allName[allName.length - 1];
+        ImageBeanImageList imageBeanImageList = new ImageBeanImageList();
+        imageBeanImageList.path = filePath;
+        imageBeanImageList.name = fileName;
+        imageBeanImageList.type = type;
+        imageList.add(imageBeanImageList);
+      }
+      imageBeanEntity.imageList = imageList;
+      return imageBeanEntity;
+    }
   }
 }

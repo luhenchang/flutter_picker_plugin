@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     }),
             Text(
-              '获取图片结果',
+              'result',
               style: Theme.of(context).textTheme.display1,
             ),
           ],
@@ -152,13 +152,13 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           FloatingActionButton(
             onPressed: _getPhotoAium,
-            tooltip: '图片',
-            child: Text("图片"),
+            tooltip: 'image',
+            child: Text("image"),
           ),
           FloatingActionButton(
             onPressed: _incrementCounter,
-            tooltip: '文件',
-            child: Text("文件"),
+            tooltip: 'file',
+            child: Text("file"),
           )
         ],
       ),
