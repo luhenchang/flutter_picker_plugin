@@ -102,7 +102,7 @@ public class FlutterpluginwangfeiPlugin implements FlutterPlugin, MethodCallHand
             boolean mCompress = call.argument("mCompress");
             boolean mEnableCrop = call.argument("mEnableCrop");
             PictureSelector.create(activity)
-                    .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                    .openGallery(mPictureMimeType)// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                     .theme(R.style.picture_default_style)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
                     .maxSelectNum(mMxSelectNum)//TODO 王飞 最大图片选择数量需要减去已近又得哦。
                     .minSelectNum(mInSelectNum)// 最小选择数量
