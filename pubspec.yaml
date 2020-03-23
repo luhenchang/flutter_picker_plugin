@@ -1,8 +1,8 @@
 name: flutterpluginwangfei
 description: A new Flutter plugin for us could selected image or vedio or audio .
-version: 0.08.0
+version: 1.12.0
 author: fei wang <luhenchang1314@gmail.com>
-homepage: https://github.com/luhenchang/luhenchang_plugin
+homepage: https://github.com/luhenchang/flutter_picker_plugin
 environment:
   sdk: ">=2.1.0 <3.0.0"
 
@@ -16,7 +16,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
   # This section identifies this Flutter project as a plugin project.

@@ -5,24 +5,30 @@ A Select picture and file plugins.
 ## Getting Started
 
 ## How to Use
-  #### 1. Depend on it
-  flutterpluginwangfei: ^0.8.0
+  #### 1. dependencies:
+  flutterpluginwangfei: ^0.11.0
   #### 2. Android side
   No configuration required on the android side
   #### 3. Ios side
 
-  info.plist add
-  <key>NSPhotoLibraryAddUsageDescription</key>
-    	<string>Do you allow this app to use albums?</string>
-    	<key>NSPhotoLibraryUsageDescription</key>
-    	<string>This app needs access to your photo album so you can use services like uploading pictures</string>
-    	<key>NSCameraUsageDescription</key>
-    	<string>This app requires your consent to use the camera features</string>
-    	<key>NSAppTransportSecurity</key>
-    	<dict>
-    		<key>NSAllowsArbitraryLoads</key>
-    		<true/>
-    	</dict>
+  Add the following entry to your Info.plist file, located in /Info.plist :
 
-  ####4 Run as follows
+  ```
+  <key>NSAppTransportSecurity</key> <dict>
+  <key>NSAllowsArbitraryLoads</key> <true/> </dict>
+  <key>NSMicrophoneUsageDescription</key> <string>...</string>
+  <key>NSPhotoLibraryAddUsageDescription</key> <string>...</string>
+  <key>NSCameraUsageDescription</key> <string>...</string>
+  <key>NSPhotoLibraryUsageDescription</key> <string>...</string>
+  ```
+  #### 4 Run as follows android
+  ![android image video audio](https://img-blog.csdnimg.cn/20200320222857806.gif)  
+  ![android file](https://img-blog.csdnimg.cn/20200320223145358.gif)
+
+  #### 5 Run as follows Ios
+  ![ios-image or vedio](https://img.520lee.com/FgBiC1XQYhMZc-ankzzxXfAx7PWG)
+
+
+
+
 
