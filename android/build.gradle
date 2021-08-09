@@ -1,7 +1,7 @@
 group 'com.example.flutterpluginwangfei'
 version '1.0'
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android'
 
 buildscript {
     repositories {
@@ -28,8 +28,8 @@ rootProject.allprojects {
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -45,8 +45,8 @@ android {
 
 dependencies {
     implementation "androidx.core:core-ktx:1.2.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+   // implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  //  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core:1.2.0'
